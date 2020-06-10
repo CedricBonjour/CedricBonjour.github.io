@@ -1,0 +1,211 @@
+<html>
+<head>
+	<title>Insurance App Demo</title>
+	<link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+	<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+	<script src="script.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" type="text/css" href="theme.css">
+</head>
+<body onload="document.getElementById('persoCard').click();">
+	<div class="mdc-drawer-app-content">
+		<header class="mdc-top-app-bar app-bar" id="app-bar">
+			<div class="mdc-top-app-bar__row">
+				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+					<a href="#"    class="demo-menu material-icons mdc-top-app-bar__navigation-icon"  onclick ="toggleMenu()" >menu</a>
+					<span class="mdc-top-app-bar__title" style="cursor:pointer" onclick="hideSections();document.getElementById('mainSection').style.display = 'block' ">Mon Assurance</span>
+				</section>
+			</div>
+		</header>
+		<main class="main-content" id="main-content">
+			<div class="mdc-top-app-bar--fixed-adjust" style="position:relative">
+				<aside  id="menu" class="mdc-drawer" style="display:none; position:fixed">
+					<div class="mdc-drawer__header">
+						<img src="profilePic.jpg" style="margin-top:1em;width:50%; border-radius:50%">
+						<h3 class="mdc-drawer__title">Arthur Duval</h3>
+						<h6 class="mdc-drawer__subtitle">a.duval@gmail.com</h6>
+					</div>
+					<hr>
+					<div class="mdc-drawer__content">
+						<nav class="mdc-list">
+							<a class="mdc-list-item mdc-list-item--activated" href="#">
+								<i class="material-icons mdc-list-item__graphic" aria-hidden="true">account_circle</i>
+								<span class="mdc-list-item__text">Compte</span>
+							</a>
+							<a class="mdc-list-item " href="#" aria-current="page">
+								<i class="material-icons mdc-list-item__graphic" aria-hidden="true">inbox</i>
+								<span class="mdc-list-item__text">Documents Justificatifs</span>
+							</a>
+							<a class="mdc-list-item" href="#">
+								<i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
+								<span class="mdc-list-item__text">Messages</span>
+							</a>
+							<a class="mdc-list-item" href="#">
+								<i class="material-icons mdc-list-item__graphic" aria-hidden="true">build</i>
+								<span class="mdc-list-item__text">Paramètres</span>
+							</a>
+						</nav>
+					</div>
+				</aside>
+				<section id="mainSection" class="section" style="display:block">
+					<br>
+					<span style="font-size: 4em; "> 180 € </span>
+					/an
+					<br>
+					<div class="card"  onclick="hideSections();document.getElementById('carSection').style.display='block'">
+						<img src="car.svg">
+						<br> Véhicule <br>
+						<span>30€</span>
+					</div>
+					<div class="card">
+						<img src="island.svg">
+						<br> Vacances <br>
+						<span>20€</span>
+					</div>
+					<div class="card">
+						<img src="health.svg">
+						<br> Santé<br>
+						<span>50€</span>
+					</div>
+					<div class="card">
+						<img src="house.svg">
+						<br> Immobilier <br>
+						<span>80€</span>
+					</div>
+					<br>
+					<br>
+					<button class="bot foo-button mdc-button" onclick="hideSections();document.getElementById('chatSection').style.display = 'block' "><img src="chatbot.svg" style="height:3em"> Questions?</button>
+				</section>
+				<section id="chatSection" class="section" style="display:none; padding: 1em 0 3em ">
+					<div class="botContainer msgContainer" style="display:block"><div class="botmsg msg" > Bonjour! <br> Que puis-je faire pour vous? </div></div>
+					<div class="clientContainer msgContainer"><div class="clientmsg msg" > Je viens d'avoir un accident de voiture <br> Que dois-je faire? </div></div>
+					<div class="botContainer msgContainer"><div class="botmsg msg" >
+						Confirmez vous les informations suivantes:
+						<br>
+						Vous êtes sur l'autoroute <b>A6</b> à la borne <b> 183</b>
+						<br>
+						Vous êtes joignable au <b> 06 25 92 16 34</b>
+					</div></div>
+					<div class="clientContainer msgContainer"><div class="clientmsg msg" > Oui </div></div>
+					<div class="botContainer msgContainer"><div class="botmsg msg" >
+						Nous contactons le garage le plus proche.
+						<br>
+						Pouvez-vous prendre une photo du véhicule?
+					</div></div>
+					<div class="clientContainer msgContainer"><div class="clientmsg msg" > <img src="carCrash.jpg" style="width:50%"> </div></div>
+					<div class="botContainer msgContainer"><div class="botmsg msg" > Veuillez décrire les conditions de l'accident par message vocal </div></div>
+					<div class="clientContainer msgContainer"><div class="clientmsg msg" >
+						<img src="playSound.png" style="height:1em; padding:0.3em">
+						<img src="soundWave.png" style="height:2em">
+					</div></div>
+					<div class="botContainer msgContainer"><div class="botmsg msg" > Une dépanneuse arrive d'ici 20 minutes, <br> Veuillez bien vouloir patienter en sécurité. </div></div>
+					<div style="position:fixed; bottom: 0; width : 100%; height:3em; background-color: #eee;" >
+						<div class="mdc-text-field  mdc-text-field--with-leading-icon mdc-text-field--with-trailing-icon mdc-text-field--fullwidth">
+							<i class="material-icons mdc-text-field__icon">attachment</i>
+							<input type="text" id="my-input" class="mdc-text-field__input ">
+							<i class="material-icons mdc-text-field__icon" tabindex="0" role="button" onclick="nextMessage()">send</i>
+							<div class="mdc-line-ripple"></div>
+						</div>
+					</div>
+				</section>
+				<section id="carSection" class="section" style="display:none" >
+					<div  class="card selected" style=" background-color:#eee ;border-bottom:2px solid #aaa;">
+						<img src="car.svg">
+						<br>Renault Clio 5 <br>
+						<span>30€</span>
+						<img src="info.svg" class="lock">
+					</div>
+					<div id="persoCard" class="card" >
+						<img src="moto.svg">
+						<br> BMW G310R <br>
+						<span>20€</span>
+						<img src="info.svg" class="lock">
+					</div>
+					<div id="persoCard" class="card" >
+						<br> Ajouter un véhicule <br>
+						<span>+</span>
+					</div>
+					<hr>
+					<h2> Renault Clio 5 </h2>
+					<h4 style="color:green">15000€</h4>
+					<br>
+					<div id="cheapCard" class="card selected" onclick="selected(this)">
+						<img src="wheel.png">
+						<br>Essentiel <br>
+						<span>10€</span>
+						<img src="lock.svg" class="lock">
+					</div>
+					<div id="persoCard" class="card" onclick="selected(this)">
+						<img src="car.svg">
+						<br> Personnalisé<br>
+						<span>30€</span>
+					</div>
+					<div id="zenCard" class="card" onclick="selected(this)">
+						<img src="sportsCar.png">
+						<br> ZEN <br>
+						<span>100€</span>
+						<img src="lock.svg" class="lock">
+					</div>
+					<hr>
+					<ul  class="mdc-list inline-demo-list" style="max-width:30em; display:inline-block">
+						<li class="listOpt mdc-list-item mdc-list-item--activated mdc-ripple-upgraded" tabindex="0" style="  --mdc-ripple-fg-size:285px; --mdc-ripple-fg-scale:1.71427; --mdc-ripple-fg-translate-start:-54.0875px, -120.306px; --mdc-ripple-fg-translate-end:95.5769px, -118.5px;">
+							<span class="mdc-list-item__graphic material-icons" aria-hidden="true">favorite</span>
+							<span class="mdc-list-item__text">Responsabilité Civil</span>
+							<span aria-hidden="true" class="mdc-list-item__meta"></span>
+						</li>
+						<li class="listOpt mdc-list-item mdc-list-item--activated mdc-ripple-upgraded" tabindex="-1">
+							<span class="mdc-list-item__graphic material-icons" aria-hidden="true">favorite</span>
+							<span class="mdc-list-item__text">Protection Juridique</span>
+							<span aria-hidden="true" class="mdc-list-item__meta"></span>
+						</li>
+						<span id="options" >
+							<li role="separator" class="mdc-list-divider"></li>
+							<li class="listOpt mdc-list-item mdc-ripple-upgraded" tabindex="-1" onclick="selectItem(this)">
+								<span class="mdc-list-item__graphic material-icons" aria-hidden="true">favorite</span>
+								<span class="mdc-list-item__text">Vol</span>
+								<span aria-hidden="true" class="mdc-list-item__meta"></span>
+							</li>
+							<li class="listOpt mdc-list-item mdc-ripple-upgraded" tabindex="-1" onclick="selectItem(this)">
+								<span class="mdc-list-item__graphic material-icons" aria-hidden="true">favorite</span>
+								<span class="mdc-list-item__text">Incendie</span>
+								<span aria-hidden="true" class="mdc-list-item__meta"></span>
+							</li>
+							<li class="listOpt mdc-list-item mdc-ripple-upgraded" tabindex="-1" onclick="selectItem(this)">
+								<span class="mdc-list-item__graphic material-icons" aria-hidden="true">favorite</span>
+								<span class="mdc-list-item__text">Véhicule de remplacement</span>
+								<span aria-hidden="true" class="mdc-list-item__meta"></span>
+							</li>
+							<li class="listOpt mdc-list-item mdc-ripple-upgraded" tabindex="-1" onclick="selectItem(this)">
+								<span class="mdc-list-item__graphic material-icons" aria-hidden="true">favorite</span>
+								<span class="mdc-list-item__text">Réparation</span>
+								<span aria-hidden="true" class="mdc-list-item__meta"></span>
+							</li>
+							<li class="listOpt mdc-list-item mdc-ripple-upgraded" tabindex="-1" onclick="selectItem(this)">
+								<span class="mdc-list-item__graphic material-icons" aria-hidden="true">favorite</span>
+								<span class="mdc-list-item__text">Remorquage</span>
+								<span aria-hidden="true" class="mdc-list-item__meta"></span>
+							</li>
+							<li id="premium" class="listOpt mdc-list-item mdc-ripple-upgraded" tabindex="-1" onclick="selectItem(this)">
+								<span class="mdc-list-item__graphic material-icons" aria-hidden="true">favorite</span>
+								<span class="mdc-list-item__text">Bonus Premium</span>
+								<span aria-hidden="true" class="mdc-list-item__meta"></span>
+							</li>
+						</span>
+					</ul>
+					<br>
+					<div id="slider" style="width:16em; display:inline-block">
+						<div style="float:left; padding:0.5em">Prix: <span id="price">30</span>€</div>
+						<div style="float:right;padding:0.5em">Couverture: <span id="coverage">15000</span>€ </div>
+						<br><br><br>
+						<input type="range" min="1000" max="50000" step="200" value="15000" oninput="slide(this.value)">
+					</div>
+					<br>
+					<br>
+					<br>
+					<button class="bot foo-button mdc-button"><img src="checkBox.svg" style="height:1em; margin-right:1em"> Selectionner l'offre</button>
+				</section>
+			</div>
+		</main>
+	</div>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>NanoCell - CSV Editor</title>
+    <link rel="icon" href="img/nanocell_fit.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="theme.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://js.stripe.com/v3"></script>
+</head>
+
+<body>
+     <nav id="main-nav">
+        <a href="#header">NanoCell</a>
+        <a href="#vision">Vision</a>
+        <a href="#header"><img id="logo" src="img/nanocell.svg" alt="NanoCell Logo" /></a>
+        <a href="#support">Support</a>
+        <a href="#header">Download </a>
+    </nav>
+    <div id="container">
+   
+    <header id="header">
+       <h1 id="title"><span>NanoCell  -  CSV editor</span></h1>
+        <div id="downloadHolder"> 
+            <a href="https://github.com/CedricBonjour/NanoCell/releases/download/v1.0.0/NanoCell_v1.0.0_Win64_setup.exe"><button id="winDownload"><img src="img/os/windows.svg"> Windows (x64) <span class="red">Beta<span></button></a>
+            <a href="https://github.com/CedricBonjour/NanoCell/releases/download/v1.0.0/nanocell_osx_v1.0.0.tar.gz"><button id="osxDownload"><img src="img/os/apple.svg"> OS X (mac)<span class="red">Beta<span></button></a>
+            <button><img src="img/os/linux.svg"> Linux     <span class="red">Upcoming<span></button>
+             <a href="https://github.com/CedricBonjour/NanoCell"><button><img src="img/sup/github.svg"> Source Code </button></a>
+
+           
+        </div>
+        <section id="osxNote">
+            <h3>Mac OS : Important Note</h3>
+            Nanocell's MacOS release does not have an 'Apple Installer Certificate'. <br>
+            Because of this, Nanocell cannot be distributed under its valid name. <br>
+            <b>Nanocell will still behave normally and remain 100% functional. </b> <br>
+            To install, drag the app from the .dmg to the app directory. <br> 
+            <br>
+            The 'Apple Installer certificate' requires a €90/yr developer subscription. <br>
+            Please <i><a href="#support">donate</a></i> to Nanocell for Mac OS full support.
+            <br><br>
+            <button id="osxDownload">Continue to download </button>
+            <br><br>
+        </section>
+        <div id="screenshots">
+            <img id="lightShot" src="img/screenshot_light.png" alt="screenshot light" />
+            <img id="darkShot"  src="img/screenshot_dark.png" alt="screenshot dark" />
+        </div>
+        <section id="subtitle">
+            <span>Free</span>
+            <span>Fast</span>
+            <span>Open Source</span>
+            <span>Cross Platform</span>
+        </section>
+       
+    </header>
+    <div id="vision">
+
+        <h1>The vision</h1>
+        <p>
+            NanoCell was built to <b>handle database exports</b> (or any large csv file) while staying <b>lightweight and fast</b>.     
+            It is <b>cross-platform</b>, distraction free, and <b>keyboard driven</b> to fit any workflow (cheers to you mouse fearing developpers &#128521;).
+            An intuitive UI has also been added for a smooth learning curve. 
+            Last but not least, NanoCell presents powerfull <b>computing capabilities</b> enabling you to work with variables and formulas. 
+        </p>
+       
+        <hr>
+          <span>NanoCell aims to provide <b> a simple and free alternative to propritary spreadsheet editors</b> which are often too slow and cumbersome for the vast majority of their use-cases.  </span>
+     <br><br>
+     </div>
+ <div id="support">
+            
+            
+            <br><br><h1>Open source projects require hard work and dedication!</h1>
+            Support NanoCell
+<!-- <br>
+            <div id="supList">
+            <img src="img/sup/github.svg" alt="Github" title="Github" />
+            <img src="img/sup/paypal.png" alt="Paypal" title="Paypal" />
+            <img src="img/sup/lydia.png" alt="Lydia" title="Lydia" />
+            </div> <br>or via
+ -->
+            <br><br>
+            <div id="priceSelect">
+                <button class="pricing">5</button><button class="pricing">10</button><button class="pricing" id="priceSlct">25</button><button class="pricing">50</button><button class="pricing">100</button>
+                <button class="pricing">250</button><button class="pricing">500</button><button class="pricing">1000</button>
+            </div>
+
+            <button id="donate" role="link">Donate</button>
+            <button id="subscribe" role="link">Monthly Subscription</button>
+          
+            <div id="error-message"></div>
+
+
+            <br><br> <br><br>
+            
+        </div>
+
+        <div>   
+            <br><br><br><br>
+            <div class="card">
+                <h3>Upcoming features</h3>
+                <br>2D graph capabilities
+                <br>Sort columns / rows
+                <br>Sync with third parties
+                <br>Plugin support
+                <br>Filters
+                <br>Better Date support
+                <br>Performance gains
+                <br>Right Click shortcuts
+            </div>
+             <div class="card">
+                <h3>Upcoming extras</h3>
+           
+                <br>User guide
+                <br>Kickstart video
+                <br>Tutorial videos
+                <br>Forum    
+                <br>FAQ section   
+                <br> 
+                <br>
+                <br>
+                <br>
+            </div>
+             <br><br>
+             Further development of NanoCell is directly corrolated to the amount of support the project receives.
+             <br><br>
+            <a href="https://github.com/CedricBonjour/CedricBonjour.github.io/issues" target="_blank"><button>Bug Reports &amp; Feature Requests</button></a>
+       
+
+               <br><br><br><br>
+        </div>
+   <!--      <div id="ug">
+            <div id="ug-title"><br><h1>User guide</h1><br></div>
+            <nav id="ug-nav">
+                <a>Introduction</a>
+                <a>Settings</a>
+                <a>Date formatting</a>
+                <a>Find &amp; Replace</a>
+                <a>Solver</a>
+                <a>Others</a>
+            </nav>
+            <br><br><br><br>
+            <span>The user guide is still under development  </span>
+            <div style="height:80vh"></div>
+        </div> -->
+
+
+
+
+         <section>
+
+            <br><br>
+           <h1>Special Thanks</h1>
+           <p>We would like to give a great many thanks to <a href="https://github.com/jiggzson">Martin Donk @jiggzson</a> for his <a href="https://github.com/jiggzson/nerdamer">Nerdamer</a> project : a small and light-weight symbolic math expression evaluator enabling NanoCell's solver feature. Checkout his work at <a href="https://nerdamer.com/">nerdamer.com</a></p>
+           <br><br><br><br>
+       </section>
+
+
+       <footer>
+            <a href="../index.html">About the founder</a>
+            <a href="https://github.com/CedricBonjour/NanoCell/blob/master/LICENSE">License <br>  Apache v2.0</a>
+      
+            <!-- <a href="">Release Notes</a> -->
+            <!-- <a href="">Github project</a> -->
+            <a href="">Reddit</a>
+       </footer>
+       </div>
+    <script type="text/javascript" src="script.js"></script>
+
+</body>
+
+
+</html>
