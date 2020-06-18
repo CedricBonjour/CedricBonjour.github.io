@@ -5,6 +5,14 @@
   --shadow: #aaa;
 }
 
+#subtitle span {
+  margin:1em;
+}
+
+#vision span{
+  width : 40em;
+}
+
 .pricing{
   margin:.5em;
 }
@@ -40,7 +48,7 @@ p{
 }
 span{
   display: inline-block;
-  width: 40em;
+  /* width: 40em; */
   align-items: center;
   max-width: 90%;
   /* flex-wrap: wrap; */
@@ -149,8 +157,8 @@ button img{
 .red{
   color: red;
   position: absolute;
-  left: -2em;
-  bottom: -1em;
+  left: -1em;
+  bottom: -.5em;
   transform: rotate(30deg);
 }
 
@@ -168,6 +176,7 @@ header {
    align-items: center;
    font-size: 2em;
    flex-wrap: wrap;
+   width: 100%;
 }
 
 #screenshots{
@@ -195,12 +204,14 @@ header {
 }
 
 #subtitle{
+  flex-wrap: wrap;
   /* box-shadow: 0 -1px  var(--shadow); */
   font-weight:bold;
-  padding: 1em;
+  /* padding: 1em; */
   margin-top:1em;
   display:inline-flex;
   justify-content:space-evenly;
+  align-items: center;
 }
 
 

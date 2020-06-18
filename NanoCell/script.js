@@ -47,3 +47,31 @@ for (var btn of pricing ){
     });
   });
 })();
+
+
+
+
+function downloadCount(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var info = JSON.parse(xhttp.response);
+        console.log(info);
+        var counter = 0 ;
+        for (var release of info){
+          for (var asset of release.assets){
+            console.log(asset);
+            counter+= asset.download_count;
+          }
+        }
+        document.getElementById('userDownloadCount').innerText = counter + " users"
+        
+      }
+  };
+  xhttp.open("GET", "https://api.github.com/repos/CedricBonjour/NanoCell/releases", true);
+  xhttp.send();
+
+}
+
+
+downloadCount();
