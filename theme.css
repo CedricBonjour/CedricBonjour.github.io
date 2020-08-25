@@ -9,7 +9,8 @@ body{
   font-family:lato;
   font-weight:lighter;
   display :inline-block;
-  width : 50%;
+  width : 15cm;
+  max-width: 70%;
   margin-left :0;
   padding-bottom: 30vh;
  }
@@ -95,8 +96,7 @@ ul {
 }
 
 
-@media screen and (max-width: 900px) {body {width: 70%;}}
-@media screen and (max-width: 600px) {body {width: 90%;}}
+@media screen and (max-width: 10cm) {body {max-width: 95%;}}
 
 #pdf{
 -webkit-transition: -webkit-transform .3s ease-in-out;
@@ -110,3 +110,10 @@ transform: rotate(-45deg);
 
 
 
+.coursera{
+  height: 1.2em;
+  position:absolute;
+  right :.5em;
+  bottom:.5em;
+
+}
