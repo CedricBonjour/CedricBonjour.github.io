@@ -128,10 +128,11 @@ button:hover{
 @media (orientation: portrait) {
 
 #cover_screen{
-	align-items: flex-end;
-	border-radius: 0 1em 1em;
+	/* align-items: flex-end; */
+	/* border-radius: 0 1em 1em; */
 }
 #cover_screen div{
-	border-radius:  1em 1em 0 0 ;
+	/* border-radius:  1em 1em 0 0 ; */
+	margin: 1em;
 }
 }
