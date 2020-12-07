@@ -1,0 +1,126 @@
+:root{
+	--c: #ad996d ;
+}
+
+body{
+	margin:0;
+	display:flex;
+	height: 100vh;
+	width:100vw;
+	overflow: hidden;
+	font-family: lato;
+	text-align:center;
+}
+
+
+
+
+
+
+#img_container{
+	height: 100%;
+	position:relative;
+	width: 100%;
+	overflow: scroll;
+}
+
+
+.bg{
+	transition: width 1s ease-in-out;
+	position:absolute;
+	top: 0;
+	/* bottom: 0; */
+	/* margin: auto; */
+	left: 0;
+	/* display: inline-block; */
+	width: 120%;
+	/* 	max-height: 100%; */
+}
+
+.consultant{
+	opacity: .1;
+}
+
+.consultant:hover{
+	opacity:.8;
+
+}
+
+
+.size{
+   /* bottom: unset; */
+   width: 200%;
+}
+
+
+#cover_screen{
+	position:fixed;
+	top: 0;
+	left:0;
+	height:100vh;
+	width:100vw;
+	background-color:white;
+	background-image:url("poke2.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background:none;
+	display: flex;
+	align-items: center;
+	/* align-content: center; */
+	justify-content: center;
+}
+
+#cover_screen div{
+	background: white;
+	padding: 1em;
+	border-radius: 1em;
+	height: 60vh;
+	display:flex;
+	width: 25em;
+	/* max-width: 80em; */
+	border: solid 2px var(--c);
+	flex-direction: column;
+	/* justify-content: center; */
+	}
+
+
+#pikachu{clip-path: circle(3% at 44% 70%) }
+#leviator{clip-path: circle(8% at 90% 30%)}
+#dracofeu{clip-path: circle(7% at 54% 60%)}
+#carapuce{clip-path: circle(3% at 47% 77%)}
+#ronflex{clip-path: circle(4% at 67% 80%)}
+#rondoudou{clip-path: circle(2% at 67% 90%)}
+
+#txt{
+	display:block;
+	overflow-y:scroll;
+	flex-grow:2;
+/* 	justify-content:center; */
+	text-align:justify;
+}
+#small_img{
+	display:inline-block;
+	height:3em;
+/* 	width:3em; */
+}
+
+button {
+	outline:none;
+		color:var(--c);
+	background:white;
+
+	border-radius:1em;
+	padding:1em;
+	
+	border: solid 3px var(--c);
+}
+
+button:hover{
+	background:var(--c);
+	color:white;
+}
+
+#start_game,#keep_looking, #incriminate {
+	display:none;
+}
