@@ -13,26 +13,28 @@ const go_to_game = document.getElementById("go_to_game");
 const keep_looking = document.getElementById("keep_looking");
 const incriminate = document.getElementById("incriminate");
 
+const ratio  =  bg.width / bg.height;
 const win_count = consultants.length; 
 var found_count = 0;
 
+var size_coef = 1.1;
 
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
 
-function scrollCenter(b = "smooth"){
+function capitalizeFirstLetter(string) {return string.charAt(0).toUpperCase() + string.slice(1)}
+
+function runResize(e,b = "smooth"){
+    const new_width = size_coef* Math.max(window.innerWidth, window.innerHeight *ratio) ;
+    console.log(new_width);
+    for (i of document.getElementsByClassName("bg")) i.width = new_width;
     var st =(img_container.scrollHeight - img_container.clientHeight) / 2;
     var sl= (img_container.scrollWidth - img_container.clientWidth) / 2;
     img_container.scroll({top: st,left: sl,behavior:b }); //smooth
 }
 
 
-scrollCenter("auto")
 
-
-
-
+window.addEventListener('resize', runResize);
+runResize(null,"auto")
 
 for (consultant of consultants)consultant.addEventListener("click", found_consultant);
 
@@ -48,11 +50,9 @@ start_game.addEventListener("click", e=>{
     start_game.style.display = "none";
     keep_looking.style.display = "inline-block";
     incriminate.style.display = "inline-block";
-   
-   
     cover_screen.style.display = "none";
-    var bgs = document.getElementsByClassName("bg");
-    for (img of bgs)img.classList.toggle("size");
+    size_coef = 2;
+    runResize(null, "smooth");
     
 })
 

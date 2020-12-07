@@ -33,7 +33,7 @@ body{
 	/* margin: auto; */
 	left: 0;
 	/* display: inline-block; */
-	width: 120%;
+	/* width: 120%; */
 	/* 	max-height: 100%; */
 }
 
@@ -67,7 +67,6 @@ body{
 	background:none;
 	display: flex;
 	align-items: center;
-	/* align-content: center; */
 	justify-content: center;
 }
 
@@ -75,7 +74,7 @@ body{
 	background: white;
 	padding: 1em;
 	border-radius: 1em;
-	height: 60vh;
+	min-height: 60vh;
 	display:flex;
 	width: 25em;
 	/* max-width: 80em; */
@@ -94,9 +93,7 @@ body{
 
 #txt{
 	display:block;
-	overflow-y:scroll;
 	flex-grow:2;
-/* 	justify-content:center; */
 	text-align:justify;
 }
 #small_img{
@@ -123,4 +120,18 @@ button:hover{
 
 #start_game,#keep_looking, #incriminate {
 	display:none;
+}
+
+
+
+
+@media (orientation: portrait) {
+
+#cover_screen{
+	align-items: flex-end;
+	border-radius: 0 1em 1em;
+}
+#cover_screen div{
+	border-radius:  1em 1em 0 0 ;
+}
 }
