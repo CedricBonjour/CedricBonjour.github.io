@@ -34,7 +34,7 @@ function runResize(e,b = "smooth"){
 
 
 
-window.addEventListener('resize', runResize);
+// window.addEventListener('resize', runResize);
 runResize(null,"auto")
 
 for (consultant of consultants)consultant.addEventListener("click", found_consultant);
