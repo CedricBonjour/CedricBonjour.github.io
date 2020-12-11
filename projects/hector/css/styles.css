@@ -70,8 +70,9 @@ body{
 }
 
 button {
+	display: none;
 	outline:none;
-		color:var(--c);
+	color:var(--c);
 	background:white;
 
 	border-radius:1em;
@@ -83,10 +84,6 @@ button {
 button:hover{
 	background:var(--c);
 	color:white;
-}
-
-#start_game,#keep_looking, #incriminate {
-	display:none;
 }
 
 
