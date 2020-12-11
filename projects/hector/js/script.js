@@ -1,8 +1,12 @@
+window.addEventListener("load", e=>{
 
+
+
+const bg = document.getElementById("bg");
 const consultants = document.getElementsByClassName("consultant")
-const bg = document.getElementById("background");
 const cover_screen = document.getElementById("cover_screen");
 const img_container = document.getElementById("img_container");
+const wrapper = document.getElementById("wrapper");
 
 const small_img = document.getElementById("small_img");
 const header = document.getElementById("header");
@@ -17,25 +21,47 @@ const ratio  =  bg.width / bg.height;
 const win_count = consultants.length; 
 var found_count = 0;
 
-var size_coef = 1.02;
+var size_coef = 1.001;
 
 
 
-function capitalizeFirstLetter(string) {return string.charAt(0).toUpperCase() + string.slice(1)}
+//================================OBSERVER
+
+// background.addEventListener('transitionend', function(e){
+
+//         img_container.style.width = background.width+"px";
+//     img_container.style.height = background.height+"px";
+// });
+            
+
+
+// var observer = new MutationObserver(function(mutations) { 
+//     img_container.style.width = background.width+"px";
+//     img_container.style.height = background.height+"px";
+// });
+
+// observer.observe(background, { attributes : true, attributeFilter : ['width'] });
+
+
+//==================================STEPS
+
+
 
 function runResize(e,b = "smooth"){
     const new_width = size_coef* Math.max(window.innerWidth, window.innerHeight *ratio) ;
-    console.log(new_width);
-    for (i of document.getElementsByClassName("bg")) i.width = new_width;
-    var st =(img_container.scrollHeight - img_container.clientHeight) / 2;
-    var sl= (img_container.scrollWidth - img_container.clientWidth) / 2;
-    img_container.scroll({top: st,left: sl,behavior:b }); //smooth
+    img_container.style.width = new_width+"px";
+    img_container.style.height = (new_width /ratio )+"px";
+    var st =(wrapper.scrollHeight - wrapper.clientHeight) / 2;
+    var sl= (wrapper.scrollWidth - wrapper.clientWidth) / 2;
+    wrapper.scroll({top: st,left: sl,behavior:b }); //smooth
 }
 
 
 
 // window.addEventListener('resize', runResize);
 runResize(null,"auto")
+
+img_container.style.transition = "width 1s ease-in-out,height 1s ease-in-out"
 
 for (consultant of consultants)consultant.addEventListener("click", found_consultant);
 
@@ -52,7 +78,7 @@ start_game.addEventListener("click", e=>{
     keep_looking.style.display = "inline-block";
     incriminate.style.display = "inline-block";
     cover_screen.style.display = "none";
-    size_coef = 1.5;
+    size_coef = 1.3;
     runResize(null, "smooth");
     
 })
@@ -66,7 +92,7 @@ keep_looking.addEventListener("click", e=>{
 
 
 function found_consultant (e){
-    e.target.style.opacity = 1;
+    e.target.style.opacity = 0.6; 
     cover_screen.style.display = "flex";
     small_img.src = "profile_img/" + e.target.id + ".png"
     header.innerHTML = capitalizeFirstLetter( e.target.id);
@@ -80,13 +106,12 @@ function found_consultant (e){
 }
 
 
-
+function capitalizeFirstLetter(string) {return string.charAt(0).toUpperCase() + string.slice(1)}
 
 function win(){
     win_screen.style.display = "flex"
 
 }
-
 
 
 
@@ -99,35 +124,35 @@ let startY;
 let scrollLeft;
 let scrollTop;
 
-img_container.addEventListener("mousedown", e => {
+wrapper.addEventListener("mousedown", e => {
   isDown = true;
-  img_container.classList.add("active");
-  startX = e.pageX - img_container.offsetLeft;
-  startY = e.pageY - img_container.offsetTop;
-  scrollLeft = img_container.scrollLeft;
-  scrollTop = img_container.scrollTop;
+  wrapper.classList.add("active");
+  startX = e.pageX - wrapper.offsetLeft;
+  startY = e.pageY - wrapper.offsetTop;
+  scrollLeft = wrapper.scrollLeft;
+  scrollTop = wrapper.scrollTop;
 });
-img_container.addEventListener("mouseleave", () => {
+wrapper.addEventListener("mouseleave", () => {
   isDown = false;
-  img_container.classList.remove("active");
+  wrapper.classList.remove("active");
 });
-img_container.addEventListener("mouseup", () => {
+wrapper.addEventListener("mouseup", () => {
   isDown = false;
-  img_container.classList.remove("active");
+  wrapper.classList.remove("active");
 });
-img_container.addEventListener("mousemove", e => {
+wrapper.addEventListener("mousemove", e => {
   if (!isDown) return;
   e.preventDefault();
-  const x = e.pageX - img_container.offsetLeft;
-  const y = e.pageY - img_container.offsetTop;
+  const x = e.pageX - wrapper.offsetLeft;
+  const y = e.pageY - wrapper.offsetTop;
   const walkX = x - startX;
   const walkY = y - startY;
-  img_container.scrollLeft = scrollLeft - walkX;
-  img_container.scrollTop = scrollTop - walkY;
+  wrapper.scrollLeft = scrollLeft - walkX;
+  wrapper.scrollTop = scrollTop - walkY;
 });
 
 
-// document.addEventListener('DOMContentLoaded', function() {
+// 
 //     img_container.style.cursor = 'grab';
 
 //     let pos = { top: 0, left: 0, x: 0, y: 0 };
@@ -168,4 +193,6 @@ img_container.addEventListener("mousemove", e => {
 
 //     // Attach the handler
 //     img_container.addEventListener('mousedown', mouseDownHandler);
-// });
+// 
+
+});

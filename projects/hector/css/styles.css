@@ -12,55 +12,20 @@ body{
 	text-align:center;
 }
 
-
-
-
-
-
-#img_container{
-	height: 100%;
-	position:relative;
-	width: 100%;
+#wrapper{
+	position: relative;
 	overflow: scroll;
-	-ms-overflow-style: none;  /* IE and Edge */
-  	scrollbar-width: none;  /* Firefox */	
+	flex-grow: 2;
+	/* display: block; */
+	ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
 }
-
-
-
-
-
-#img_container::-webkit-scrollbar{
+#wrapper::-webkit-scrollbar{
 	 display: none;
 }
 
+#bg{display: none;}
 
-
-.bg{
-	transition: width 1s ease-in-out;
-	position:absolute;
-	top: 0;
-	/* bottom: 0; */
-	/* margin: auto; */
-	left: 0;
-	/* display: inline-block; */
-	/* width: 120%; */
-	/* 	max-height: 100%; */
-}
-
-.consultant{
-	opacity: 0.6;
-}
-
-.consultant:hover{
-	opacity: 0.8;
-}
-
-
-.size{
-   /* bottom: unset; */
-   width: 200%;
-}
 
 
 #cover_screen{

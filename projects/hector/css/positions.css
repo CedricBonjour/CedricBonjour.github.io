@@ -1,23 +1,50 @@
-#amandine	{clip-path: circle(4% at 17% 51%);-webkit-clip-path: circle(4% at 17% 51%);}
-#amelie		{clip-path: circle(4% at 45% 65%);-webkit-clip-path: circle(4% at 45% 65%);}
-#axel		{clip-path: circle(4% at 85% 48%);-webkit-clip-path: circle(4% at 85% 48%);}
-#charles_bis{clip-path: circle(3% at 37% 86%);-webkit-clip-path: circle(3% at 37% 86%);}
-#charles	{clip-path: circle(4% at 22% 44%);-webkit-clip-path: circle(4% at 22% 44%);}
-#claire		{clip-path: circle(5% at 60% 33%);-webkit-clip-path: circle(5% at 60% 33%);}
-#elina		{clip-path: circle(4% at 66% 23%);-webkit-clip-path: circle(4% at 66% 23%);}
-#elise		{clip-path: circle(5% at 55% 20%);-webkit-clip-path: circle(5% at 55% 20%);}
-#emmanuel	{clip-path: circle(4% at 60% 47%);-webkit-clip-path: circle(4% at 60% 47%);}
-#erwann		{clip-path: circle(5% at 75% 16%);-webkit-clip-path: circle(5% at 75% 16%);}
-#eugenie	{clip-path: circle(4% at 47% 19%);-webkit-clip-path: circle(4% at 47% 19%);}
-#guillaume	{clip-path: circle(3% at 64% 83%);-webkit-clip-path: circle(3% at 64% 83%);}
-#imane		{clip-path: circle(4% at 19% 36%);-webkit-clip-path: circle(4% at 19% 36%);}
-#joana		{clip-path: circle(5% at 81% 92%);-webkit-clip-path: circle(5% at 81% 92%);}
-#lana		{clip-path: circle(5% at 21% 83%);-webkit-clip-path: circle(5% at 21% 83%);}
-#laure		{clip-path: circle(3% at 36% 65%);-webkit-clip-path: circle(3% at 36% 65%);}
-#marie		{clip-path: circle(5% at 10% 78%);-webkit-clip-path: circle(5% at 10% 78%);}
-#maylis		{clip-path: circle(5% at 57% 7%);-webkit-clip-path: circle(5% at 57% 7%);}
-#ma			{clip-path: circle(3% at 28% 27%);-webkit-clip-path: circle(3% at 28% 27%);}
-#nicolas	{clip-path: circle(5% at 32% 47%);-webkit-clip-path: circle(5% at 32% 47%);}
-#ousama		{clip-path: circle(5% at 42% 91%);-webkit-clip-path: circle(5% at 42% 91%);}
-#pierre		{clip-path: circle(4% at 67% 67%);-webkit-clip-path: circle(4% at 67% 67%);}
-#sandrine	{clip-path: circle(3% at 59% 83%);-webkit-clip-path: circle(3% at 59% 83%);}
+#amandine	{left: 13%;top: 44%;width: 6%;height: 17%;}
+#amelie		{left: 42%;top: 60%;width: 7%;height: 13%;}
+#axel		{left: 82%;top: 43%;width: 6%;height: 12%;}
+#charles_bis{left: 34%;top: 82%;width: 5%;height: 11%;}
+#charles	{left: 19.5%;top: 39%;width: 5%;height: 11%;}
+#claire		{left: 56%;top: 27%;width: 8%;height: 13%;}
+#elina		{left: 63%;top: 19%;width: 6%;height: 9%;}
+#elise		{left: 52%;top: 15%;width: 5%;height: 11%;}
+#emmanuel	{left: 58%;top: 40%;width: 4%;height: 15%;}
+#erwann		{left: 71%;top: 10%;width: 7%;height: 13%;}
+#eugenie	{left: 44%;top: 14%;width: 5%;height: 10%;}
+#guillaume	{left: 62%;top: 79%;width: 4%;height: 13%;}
+#imane		{left: 16.5%;top: 32%;width: 4%;height: 12%;}
+#joana		{left: 77%;top: 87%;width: 9%;height: 11%;}
+#lana		{left: 18%;top: 77%;width: 7%;height: 12%;}
+#laure		{left: 33%;top: 61%;width: 5%;height: 13%;}
+#marie		{left: 7%;top: 73%;width: 6%;height: 11%;}
+#maylis		{left: 53%;top: 3%;width: 8%;height: 8%;}
+#ma			{left: 26%;top: 24%;width: 5%;height: 7%;}
+#nicolas	{left: 30%;top: 41%;width: 4%;height: 15%;}
+#ousama		{left: 39%;top: 85%;width: 6%;height: 14%;}
+#pierre		{left: 64%;top: 63%;width: 6%;height: 10%;}
+#sandrine	{left: 56%;top: 79%;width: 6%;height: 11%;}
+#hector		{left: 32%;top: 47%;width: 3%;height: 3%;}
+
+
+.consultant:hover{
+	opacity: 0.8;
+}
+
+.consultant{
+	background-color: black;
+	opacity: .3;
+	display: block;
+	position: absolute;
+	border-radius:50%;
+}
+
+#img_container{
+	background-image: url("../img/imgA.jpg");
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+	top:0;
+	left:0;
+	height: 100%;
+	width: 100%;
+}
+
