@@ -130,7 +130,7 @@ start_game.addEventListener("click", e=>{
     keep_looking.style.display = "inline-block";
     incriminate.style.display = "inline-block";
     cover_screen.style.display = "none";
-   
+    small_img.style.height = "8em";
     resize_img(1.3, "smooth");
     
 })
