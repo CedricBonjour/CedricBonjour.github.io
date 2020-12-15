@@ -166,3 +166,13 @@ play_again.addEventListener("click", e=>{
 
 
 });
+
+
+
+
+for (consultant of consultants){
+    let preImg = new Image();
+
+    preImg.src = "img/profile_img/" + consultant.id.toUpperCase() + ".png"
+}
+   
