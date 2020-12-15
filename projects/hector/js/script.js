@@ -8,6 +8,7 @@ const img_container = document.getElementById("img_container");
 const wrapper = document.getElementById("wrapper");
 const small_img = document.getElementById("small_img");
 const header = document.getElementById("header");
+const sub_header = document.getElementById("sub_header");
 const txt = document.getElementById("txt");
 
 
@@ -26,12 +27,10 @@ img_container.style.transition = "width 1s ease-in-out,height 1s ease-in-out"
 function resize_img (coef = 1 , b="auto"){
     let screen_ratio  = window.innerWidth/ window.innerHeight
     if (screen_ratio > ratio){
-        console.log("Case 1")
         img_container.style.width = (100*coef)+"vw";
         img_container.style.height = (100*coef /ratio )+"vw";
 
     }else{       
-        console.log("Case 2")
         img_container.style.height = (100*coef)+"vh";
         img_container.style.width = (100*coef *ratio )+"vh";
 
@@ -109,10 +108,12 @@ go_to_game.style.display = "block";
 function found_consultant (e){
     e.target.style.opacity = 1; 
     cover_screen.style.display = "flex";
-    small_img.src = "profile_img/" + e.target.id + ".png"
-    header.innerHTML = capitalizeFirstLetter( e.target.id);
+    small_img.src = "img/profile_img/" + e.target.id.toUpperCase() + ".png"
+    header.innerHTML =  capitalizeFirstLetter(e.target.id.split("_")[0]);
+    let surname =  e.target.id.split("_")[1];
+    sub_header.innerHTML =(surname)?  "("+capitalizeFirstLetter(surname)+")" :"";
     txt.innerHTML = dialogue[e.target.id];  
-    keep_looking.style.display = "inline-block";
+    keep_looking.style.display = "inline-block";0
     incriminate.style.display = "inline-block"; 
 }
 
@@ -142,6 +143,7 @@ keep_looking.addEventListener("click", e=>{
 
 
 incriminate.addEventListener("click", e=>{
+    sub_header.innerHTML = "";
     incriminate.style.display = "none";
     if (header.innerHTML == "Hector" ){
         keep_looking.style.display = "none";

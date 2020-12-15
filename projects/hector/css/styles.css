@@ -1,5 +1,6 @@
 :root{
 	--c: #ad996d ;
+	--f: invert(61%) sepia(6%) saturate(1862%) hue-rotate(3deg) brightness(100%) contrast(84%);;
 }
 
 body{
@@ -58,6 +59,10 @@ body{
 	}
 
 
+#header, #sub_header{
+	color:var(--c);
+	margin: .5em;
+}
 
 #txt{
 	display:block;
@@ -65,8 +70,9 @@ body{
 	text-align:justify;
 }
 #small_img{
+	/* filter: var(--f); */
 	display:inline-block;
-	height:3em;
+	height: 8em;
 }
 
 button {

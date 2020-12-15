@@ -1,34 +1,34 @@
-#amandine	{left: 13%;top: 44%;width: 6%;height: 17%;}
-#amelie		{left: 42%;top: 60%;width: 7%;height: 13%;}
-#axel		{left: 82%;top: 43%;width: 6%;height: 12%;}
-#charles_bis{left: 34%;top: 82%;width: 5%;height: 11%;}
-#charles	{left: 19.5%;top: 39%;width: 5%;height: 11%;}
+#amandine	{left: 14%;top: 42%;width: 5%;height: 17%;}
+#amelie		{left: 41%;top: 57%;width: 7%;height: 10%;}
+#axel		{left: 83%;top: 41%;width: 5%;height: 11%;}
+#charles_deransart{left: 34%;top: 77%;width: 5%;height: 9%;}
+#charles_devesse	{left: 19.5%;top: 38%;width: 5%;height: 9%;}
 #claire		{left: 56%;top: 27%;width: 8%;height: 13%;}
 #elina		{left: 63%;top: 19%;width: 6%;height: 9%;}
-#elise		{left: 52%;top: 15%;width: 5%;height: 11%;}
-#emmanuel	{left: 58%;top: 40%;width: 4%;height: 15%;}
+#elise		{left: 53%;top: 15%;width: 5%;height: 11%;}
+#emmanuel	{left: 58%;top: 40%;width: 4%;height: 12%;}
 #erwann		{left: 71%;top: 10%;width: 7%;height: 13%;}
 #eugenie	{left: 44%;top: 14%;width: 5%;height: 10%;}
-#guillaume	{left: 62%;top: 79%;width: 4%;height: 13%;}
+#guillaume	{left: 62%;top: 74%;width: 4%;height: 13%;}
 #imane		{left: 16.5%;top: 32%;width: 4%;height: 12%;}
-#joana		{left: 77%;top: 87%;width: 9%;height: 11%;}
-#lana		{left: 18%;top: 77%;width: 7%;height: 12%;}
-#laure		{left: 33%;top: 61%;width: 5%;height: 13%;}
-#marie		{left: 7%;top: 73%;width: 6%;height: 11%;}
-#maylis		{left: 53%;top: 3%;width: 8%;height: 8%;}
-#ma			{left: 26%;top: 24%;width: 5%;height: 7%;}
-#nicolas	{left: 30%;top: 41%;width: 4%;height: 15%;}
-#ousama		{left: 39%;top: 85%;width: 6%;height: 14%;}
-#pierre		{left: 64%;top: 63%;width: 6%;height: 10%;}
-#sandrine	{left: 56%;top: 79%;width: 6%;height: 11%;}
-#hector		{left: 79%;top: 60%;width: 3%;height: 3%;}
+#joana		{left: 76%;top: 81%;width: 8%;height: 10%;}
+#lana		{left: 18%;top: 73%;width: 6%;height: 10%;}
+#laure		{left: 33%;top: 57%;width: 5%;height: 13%;}
+#marie		{left: 7%;top: 69%;width: 6%;height: 10%;}
+#maylis		{left: 52%;top: 4%;width: 8%;height: 8%;}
+#marie-Astrid			{left: 26%;top: 24%;width: 5%;height: 7%;}
+#nicolas	{left: 30%;top: 41%;width: 4%;height: 12%;}
+#ousama		{left: 39%;top: 80%;width: 6%;height: 14%;}
+#pierre		{left: 64%;top: 60%;width: 6%;height: 10%;}
+#sandrine	{left: 56%;top: 74%;width: 6%;height: 10%;}
+#hector		{left: 7%;top: 45%;width: 6%;height: 16%;}
 
 
-.consultant:hover{opacity: .3}
+/*.consultant:hover{opacity: .5;}*/
 
 .consultant{
 	/* background-color: black; */
-	opacity: .1;
+	opacity: 0;
 	display: block;
 	position: absolute;
 	border-radius:50%;
@@ -40,7 +40,7 @@
 }
 
 #img_container{
-	background-image: url("../img/imgB.jpg");
+	background-image: url("../img/imgA.jpg");
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
