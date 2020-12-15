@@ -54,7 +54,7 @@ body{
 	display:flex;
 	width: 25em;
 	margin: 1em;
-	border: solid 2px var(--c);
+	border: solid .2em var(--c);
 	flex-direction: column;
 	box-shadow: var(--c);
 	}
