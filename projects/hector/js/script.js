@@ -149,7 +149,7 @@ keep_looking.addEventListener("click", e=>{
 incriminate.addEventListener("click", e=>{
     sub_header.innerHTML = "";
     incriminate.style.display = "none";
-    if (header.innerHTML == "Hector" ){
+    if (header.innerHTML == "" ){
         keep_looking.style.display = "none";
         play_again.style.display = "block";
         header.innerHTML = "Félicitations !"
