@@ -109,18 +109,22 @@ function found_consultant (e){
     e.target.style.opacity = 1; 
     cover_screen.style.display = "flex";
     small_img.src = "img/profile_img/" + e.target.id.toUpperCase() + ".png"
-    header.innerHTML =  capitalizeFirstLetter(e.target.id.split("_")[0]);
+    switch (e.target.id){
+        case "ma" :  header.innerHTML = "Marie-Astrid"; break;
+        case "hector":  header.innerHTML = ""; break;
+        default:    header.innerHTML = capitalizeFirstLetter(e.target.id.split("_")[0]);
+    }
     let surname =  e.target.id.split("_")[1];
     sub_header.innerHTML =(surname)?  "("+capitalizeFirstLetter(surname)+")" :"";
     txt.innerHTML = dialogue[e.target.id];  
-    keep_looking.style.display = "inline-block";0
+    keep_looking.style.display = "inline-block";
     incriminate.style.display = "inline-block"; 
 }
 
 
 go_to_game.addEventListener("click", e=>{
-    header.innerHTML = "Who  [...]  amongst Hectors?"
-    txt.innerHTML = "Ask around to figure out!";
+    header.innerHTML = "Hector vous emmène dans son univers. "
+    txt.innerHTML = "Déplacez vous sur la carte, cliquez sur les personnages Hector pour explorer leurs idées et trouvez la meilleure.";
     start_game.style.display = "block";
     go_to_game.style.display = "none";   
 })
@@ -148,11 +152,11 @@ incriminate.addEventListener("click", e=>{
     if (header.innerHTML == "Hector" ){
         keep_looking.style.display = "none";
         play_again.style.display = "block";
-        header.innerHTML = "That's right. You WIN!"
-        txt.innerHTML  = "Hector's idea was indeed the best" 
+        header.innerHTML = "Félicitations !"
+        txt.innerHTML  = " Vous l'aurez bien compris, pour Hector rien ne vaut une équipe soudée et motivée ! Nous vous souhaitons une excellente année 2021 !  " 
     }else{
-        header.innerHTML = "A great idea indeed, but we've got better!"
-        txt.innerHTML  = "You should probably keep looking" 
+        header.innerHTML = "Effectivement c'est une super idée, mais il y a encore mieux !"
+        txt.innerHTML  = "" 
     }
    
    
