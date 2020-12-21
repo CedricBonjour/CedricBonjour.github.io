@@ -68,7 +68,7 @@ body{
 #txt{
 	display:block;
 	flex-grow:2;
-	text-align:justify;
+	text-align: center;
 }
 #small_img{
 	/* filter: var(--f); */
