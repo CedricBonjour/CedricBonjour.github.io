@@ -51,6 +51,8 @@ body{
 	padding: 1em;
 	border-radius: 1em;
 	min-height: 60vh;
+	max-height: 80vh;
+	/* overflow-y: scroll; */
 	display:flex;
 	width: 25em;
 	margin: 1em;
@@ -66,7 +68,8 @@ body{
 }
 
 #txt{
-	display:block;
+	/* max-height: 30%; */
+	overflow: scroll;
 	flex-grow:2;
 	text-align: center;
 }
