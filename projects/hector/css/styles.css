@@ -100,6 +100,7 @@ button {
 	padding:1em;
 	
 	border: solid 3px var(--c);
+	min-height:fit-content;
 }
 
 button:hover{
