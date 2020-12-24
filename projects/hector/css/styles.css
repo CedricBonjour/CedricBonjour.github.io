@@ -52,7 +52,7 @@ body{
 	border-radius: 1em;
 	min-height: 60vh;
 	max-height: 80vh;
-	/* overflow-y: scroll; */
+	overflow-y: scroll;
 	display:flex;
 	width: 25em;
 	margin: 1em;
@@ -69,18 +69,17 @@ body{
 
 #txt{
 	/* max-height: 30%; */
-	overflow: scroll;
 	flex-grow:2;
 	text-align: center;
 }
 
 
-#txt::-webkit-scrollbar {
+#cover_screen div::-webkit-scrollbar {
   display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
-#txt {
+#cover_screen div {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
