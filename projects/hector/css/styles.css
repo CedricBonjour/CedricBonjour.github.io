@@ -73,6 +73,18 @@ body{
 	flex-grow:2;
 	text-align: center;
 }
+
+
+#txt::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+#txt {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 #small_img{
 	/* filter: var(--f); */
 	display:inline-block;
