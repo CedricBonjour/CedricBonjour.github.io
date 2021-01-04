@@ -2,7 +2,7 @@
 const dialogue ={
  
 
-amandine :"J'ai profité de ne plus ne plus prendre les transports pour expérimenter de nouvelles recettes de gâteaux et faire saliver tout Hector !",
+amandine :"J'ai profité de ne plus prendre les transports pour expérimenter de nouvelles recettes de gâteaux et faire saliver tout Hector !",
 amelie :"Le monde change vite ! Pour que les Hector aient toujours un temps d'avance, j'ai mis en place un plan de formation en interne.",
 axel :"J'ai utilisé mes talents de skieur pour veiller à maintenir la trajectoire d'Hector !",
 charles_deransart :"J'ai régulièrement envoyé des messages d'encouragement  aux Hector pour prendre de leurs nouvelles et les booster !",
