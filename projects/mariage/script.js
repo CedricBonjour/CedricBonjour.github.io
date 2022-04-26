@@ -71,9 +71,10 @@ function send_message(){
 
 
 (function() {
-  send_message()
+  
   var stripe = Stripe('pk_live_TxSh35V81KbL9NV8xVQEjlfZ00SG4u0MDt');
   document.getElementById('donate').addEventListener('click', function () {
+    send_message()
     stripe.redirectToCheckout({
       lineItems: [{price: 'price_1KspELHQxLPgR6iw6g80jQ4i', quantity: Number( document.getElementById('amount_donate').value)}],
       mode: 'payment',
