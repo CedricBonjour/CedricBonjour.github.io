@@ -1,8 +1,7 @@
 
  function draw_line_length(line){
-      ll = line.getTotalLength()
       txt = document.createElementNS('http://www.w3.org/2000/svg','text');
-      txt.textContent = ll
+      txt.textContent = Math.round( line.getTotalLength() );
       x = (line.x1.baseVal.value + line.x2.baseVal.value ) /2
       y = (line.y1.baseVal.value + line.y2.baseVal.value ) /2
 
