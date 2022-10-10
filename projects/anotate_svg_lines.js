@@ -16,3 +16,4 @@
  line_list= Array.from(document.getElementsByTagName("line"))
  line_list.forEach(draw_line_length)
 
+ 
