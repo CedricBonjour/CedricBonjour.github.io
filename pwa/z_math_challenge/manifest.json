@@ -1,10 +1,10 @@
 {
     "name": "Z Math Challenge",
     "short_name": "z_math_challenge",
-    "start_url": "/",
+    "start_url": "/pwa/z_math_challenge/",
     "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#ffffff",
+    "background_color": "#333",
+    "theme_color": "#333",
     "icons": [
         {
             "src": "favicon.ico",

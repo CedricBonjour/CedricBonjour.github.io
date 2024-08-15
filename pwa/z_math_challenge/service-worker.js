@@ -1,9 +1,9 @@
 const CACHE_NAME = 'hello-world-pwa-cache-v1';
 const urlsToCache = [
-    '/',
-    '/index.html',
-    '/manifest.json',
-    '/favicon.ico',
+    '/pwa/z_math_challenge/',
+    '/pwa/z_math_challenge/index.html',
+    '/pwa/z_math_challenge/manifest.json',
+    '/pwa/z_math_challenge/favicon.ico',
 ];
 
 self.addEventListener('install', event => {
