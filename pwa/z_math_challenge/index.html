@@ -7,57 +7,146 @@
     <title>Z Math Challenge</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" href="favicon.ico">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#333">
     <style>
         body {
-            font-family:  monospace;
+            font-family: monospace;
             text-align: center;
-            /* margin-top: 50px; */
             background-color: #333;
             color: #eee;
+            margin: 0;
         }
-        h1{ color: #555}
-        table {
-            /* width: auto; */
-            display: inline-block;
 
+        #wrapper {
+            display: inline-flex;
+            flex-direction: column;
+            justify-items: center;
+            max-width: 30em;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        table {
+            width: 100%;
             border-collapse: collapse;
-            /* margin: 20px auto; */
         }
-        th, td {
-            border: 1px solid #555;
-            width: 10em;
-            padding: .5em;
-            color:#555;
-            /* text-align: center; */
+
+        th,
+        td {
+            border: none;
+            width: 1em;
         }
-        #calc {font-size:  3em; line-height: 3em; font-weight: bold;}
-        input{text-align: center; padding: .5em; border: none; border-radius: 1em;outline: none;}
-        
+
+        #kb {
+            border-spacing: .5em;
+            border-collapse: separate;
+            height: 50vh;
+        }
+
+        #kb td {
+            font-size: 2em;
+            color: #999;
+            font-weight: bold;
+            border-radius: 1em;
+            box-shadow: inset 0 0 3px 1px #444;
+        }
+
+        #kb td:hover {
+
+            box-shadow: inset 0 0 5px 2px #444;
+        }
+
+
+        .txt {
+            font-size: 3em;
+            line-height: 2em;
+            font-weight: bold;
+            min-height: 2em;
+        }
+
+        #score_wrapper{
+            color: #555;
+
+            height: 10vh;
+            font-size: 1.3em;
+        }
+        #core{
+            height: 40vh;
+            display: flex;
+
+        }
+        #calc{
+            vertical-align:bottom;
+        }
     </style>
 </head>
 
 <body>
-    <h1>Z Math Challenge</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Score</th>
-                <th>Max Score</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td id="score">0</td>
-                <td id="max_score">0</td>
-            </tr>
-        </tbody>
-    </table>
-    <section id="calc"> 1+1</section>
-    <input type="number" id="integerInput" name="integerInput" step="1">
+    <div id="wrapper">
+        <section id="score_wrapper">
+            <br>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Score</th>
+                        <th>Max Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="score">0</td>
+                        <td id="max_score">0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section id="core">
+            <table>
+                <tbody>
+                    <tr>
+                        <td id="calc" class="txt">1+1</td>
+                    </tr>
+                    <tr>
+                        <td id="input" class="txt">?</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br> <br>
+            <!-- <div id="calc" class="txt">1+1</div>
+            <div id="input" class="txt">?</div> -->
+
+        </section>
+        <section>
+
+            <table id="kb">
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;</td>
+                        <td>0</td>
+                        <td>C</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
 
     <script>
-        // Register the service worker
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/service-worker.js')
                 .then(function (registration) {
@@ -68,57 +157,61 @@
         }
 
 
-        
+
         const operation_list = ['+', '-', '*', '/'];
-        
-        
+
+
         function get_expected_result(a, operation, b) {
             switch (operation) {
-                case '+': return  a + b;
-                case '-': return  a - b;
-                case '*': return  a * b;
-                case '/': return  a / b;
+                case '+': return a + b;
+                case '-': return a - b;
+                case '*': return a * b;
+                case '/': return a / b;
             }
         }
-        
-        
+
+
         let MAX_RESULT = 10;
         let ca = 1; //current value
         let co = '+'; //current value
         let cb = 1; //current value
-        let score = 0; 
+        let score = 0;
         let max_score = 0;
         let score_increment = 40;
 
-        document.getElementById("calc").innerHTML = ca +" "+ co + " " + cb;
+        document.getElementById("calc").innerHTML = ca + " " + co + " " + cb;
 
-        function handleSuccess(){
-            score += score_increment + Math.floor(0.05* score);
+        function handleSuccess() {
+            score += score_increment + Math.floor(0.05 * score);
             if (score > max_score) max_score = score;
 
             document.getElementById("score").innerHTML = score;
-            document.getElementById("max_score").innerHTML =max_score;
+            document.getElementById("max_score").innerHTML = max_score;
 
-            MAX_RESULT = Math.max( score,10)
+            MAX_RESULT = Math.max(score, 10)
 
             ca = get_expected_result(ca, co, cb);
-            co = new_operation(ca) ;
+            co = new_operation(ca);
             cb = new_number(ca, co);
 
-            document.getElementById("calc").innerHTML = ca +" "+ co + " " + cb;
-            document.getElementById("integerInput").value = '';
+            document.getElementById("calc").innerHTML = ca + " " + co + " " + cb;
+            document.getElementById("input").innerHTML = '?';
 
-            console.log(ca +" "+ co + " " + cb);
+            console.log(ca + " " + co + " " + cb);
         }
 
 
-        function handleInputChange(event) {
-            const inputValue = event.target.value;
-            console.log("Input value changed to:", inputValue);
-            if ( inputValue == get_expected_result(ca, co, cb) )   handleSuccess();
+        function handleInputChange(key) {
+            const input = document.getElementById('input');
+            if (input.innerText == '?') input.innerText = '';
+            if (key == 'C') input.innerText = '?';
+            else if (key == '<') input.innerText = input.innerText.slice(0, -1);
+            else input.innerText += key;
+            if (input.innerText.length == 0) input.innerText = '?';
+            if (Number(document.getElementById('input').innerHTML) == get_expected_result(ca, co, cb)) handleSuccess();
         }
 
-        document.getElementById("integerInput").addEventListener("input", handleInputChange);
+
 
 
 
@@ -126,15 +219,15 @@
 
         function get_div_list(n) {
             const div_list = [];
-            for (let i = 2; i < n/2; i++)
+            for (let i = 2; i < n / 2; i++)
                 if (n % i === 0) div_list.push(i);
             return div_list;
         }
 
-        function get_max_mult(n){
-            let i=2;
-            while (i*n < MAX_RESULT) i++;
-            return i; 
+        function get_max_mult(n) {
+            let i = 2;
+            while (i * n < MAX_RESULT) i++;
+            return i;
         }
 
 
@@ -143,12 +236,12 @@
             return arr[randomIndex];
         }
 
-        function new_number(a, op){
+        function new_number(a, op) {
             switch (op) {
-                case '+': return  Math.max(1,Math.floor(Math.random() *  (MAX_RESULT-a) ));
-                case '-': return  Math.max(1, Math.floor(Math.random() *  a ));
-                case '*': return  Math.max(2, Math.floor(Math.random() *  get_max_mult(a) ));
-                case '/': return  SlctRand(get_div_list(a));
+                case '+': return Math.max(1, Math.floor(Math.random() * (MAX_RESULT - a)));
+                case '-': return Math.max(1, Math.floor(Math.random() * a));
+                case '*': return Math.max(2, Math.floor(Math.random() * get_max_mult(a)));
+                case '/': return SlctRand(get_div_list(a));
             }
         }
 
@@ -165,9 +258,9 @@
         }
 
         function isValidOperation(n, op) {
-            if (( n<10 || isPrime(n)) && op == '/') return false;
+            if ((n < 10 || isPrime(n)) && op == '/') return false;
             if (n < 10 && op == '-') return false;
-            if (n > MAX_RESULT/2 && op == '*') return false;
+            if (n > MAX_RESULT / 2 && op == '*') return false;
             if (n > MAX_RESULT - 10 && op == '+') return false;
             return true;
         }
@@ -179,14 +272,29 @@
             return op;
         }
 
-       
 
-        document.getElementById("integerInput").focus()
 
-        setInterval( ()=>{if (score > 0) score --; document.getElementById("score").innerHTML = score;}, 200);
+
+        setInterval(() => { if (score > 0) score--; document.getElementById("score").innerHTML = score; }, 200);
+
+
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key >= '0' && event.key <= '9') handleInputChange(event.key);
+            else if (event.key === 'Backspace' && event.ctrlKey) handleInputChange('C');
+            else if (event.key === 'Backspace') handleInputChange('<');
+        });
+
+
+
+
+        Array.from(document.getElementById('kb').getElementsByTagName('td')).forEach(td => {
+            td.addEventListener('click', event => { handleInputChange(event.target.innerText); });
+        });
+
+
 
     </script>
 </body>
 
 </html>
-

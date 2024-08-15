@@ -1,6 +1,6 @@
 {
     "name": "Z Math Challenge",
-    "short_name": "z_math_challenge",
+    "short_name": "z math",
     "start_url": "/pwa/z_math_challenge/",
     "display": "standalone",
     "background_color": "#333",
