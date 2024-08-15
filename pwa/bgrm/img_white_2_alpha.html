@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>white2alpha </title>
+      <style>
+			img{
+			cursor:pointer;
+			margin: 1em;
+			max-width: 10em;
+			background-image:  repeating-linear-gradient(45deg, #bbb 25%, transparent 25%, transparent 75%, #bbb 75%, #bbb), repeating-linear-gradient(45deg, #bbb 25%, #e5e5f7 25%, #e5e5f7 75%, #bbb 75%, #bbb);
+			background-position: 0 0, 5px 5px;
+			background-size: 10px 10px;
+			}
+			input[type='file'] {
+			pointer-events: none;
+			display: none;
+			}
+			#cp_alert{
+			position: fixed;
+		    bottom: 0;
+		    width: 100%;
+		    background-color: #f59999;
+		    overflow: visible;
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		    padding: 1em 0 1em 0;
+		    opacity: 0;
+			pointer-events: none;
+			transition: 500ms ease-in-out; 
+			}
+			.box{
+			display: inline-block;
+			width: 80%;
+			background-color: #eee;
+			cursor: pointer;
+			border-radius: 2em;
+			border: dashed 2px red;
+			}
+
+
+	</style>
+   </head>
+   <body style="text-align: center; font-family:arial; margin:0">
+      <div class="container">
+         <h1>Img white-2-alpha</h1>
+         <form class="box" >
+            <div class="box_input">
+			<input type="file" name="files[]" class="box_file" multiple />
+			<br><br><br><br>
+			 To choose file(s)<br><br><b> [ jpg | png | svg] </b><br><br>click here <br> or <br> drag file here <br> or <br> ctrl+V to paste 
+			<br><br><br><br>
+            </div>
+         </form>
+      </div>
+      <br>	Once loaded click on image to copy to clipboard
+      <div id="imgs"></div>
+      <br><br><br><br>
+      <div id="cp_alert">
+      	<svg  height="48" width="48"><path d="M15 37.95Q13.8 37.95 12.9 37.05Q12 36.15 12 34.95V6.95Q12 5.75 12.9 4.85Q13.8 3.95 15 3.95H37Q38.2 3.95 39.1 4.85Q40 5.75 40 6.95V34.95Q40 36.15 39.1 37.05Q38.2 37.95 37 37.95ZM15 34.95H37Q37 34.95 37 34.95Q37 34.95 37 34.95V6.95Q37 6.95 37 6.95Q37 6.95 37 6.95H15Q15 6.95 15 6.95Q15 6.95 15 6.95V34.95Q15 34.95 15 34.95Q15 34.95 15 34.95ZM9 43.95Q7.8 43.95 6.9 43.05Q6 42.15 6 40.95V10.8H9V40.95Q9 40.95 9 40.95Q9 40.95 9 40.95H32.7V43.95ZM15 6.95Q15 6.95 15 6.95Q15 6.95 15 6.95V34.95Q15 34.95 15 34.95Q15 34.95 15 34.95Q15 34.95 15 34.95Q15 34.95 15 34.95V6.95Q15 6.95 15 6.95Q15 6.95 15 6.95Z"/></svg>
+       Image copied to clipboard
+   </div>
+      <script type="text/javascript">
+var img_ls = document.getElementById("imgs");
+var cp_alert = document.getElementById("cp_alert");
+function add_img_as_data_url(durl){
+	let canvas = document.createElement("canvas")
+	let ctx = canvas.getContext("2d")
+	let img = new Image;
+	img.onload = function() {
+		canvas.width = img.width;
+		canvas.height = img.height;
+		ctx.drawImage(img, 0, 0);
+		imgd = ctx.getImageData(0, 0, canvas.width, canvas.height)
+		x = imgd.data
+		for (var i=0,n=x.length;i<n;i+=4) if(x[i]>200 && x[i+1]>200 && x[i+2]>200) x[i+3]=0
+		ctx.putImageData(imgd, 0, 0);
+		var img_out = document.createElement("img")
+		img_out.src = canvas.toDataURL()
+		img_out.addEventListener("click", img_click_to_copy)
+		img_ls.prepend(img_out)
+		img_ls.prepend(document.createElement("br"))
+	};
+	img.src = durl
+}
+window.addEventListener('paste', function(e){
+	if(e.clipboardData == false) return false; 
+	var imgs = e.clipboardData.items;
+	if(imgs == undefined) return false;
+    for (var i = 0; i < imgs.length; i++) {
+        if (imgs[i].type.indexOf("image") == -1) continue;
+          var imgObj = imgs[i].getAsFile();
+          var url = window.URL || window.webkitURL;
+          var src = url.createObjectURL(imgObj);
+		  add_img_as_data_url(src)
+	}
+});
+function transform_file(a) {
+    if (FileReader && a && a.length) {
+        for (var b = 0; b < a.length; b++)(function(a) {
+            var b = new FileReader;
+            b.onload = function() {add_img_as_data_url(b.result)};
+            b.readAsDataURL(a)
+        })(a[b])
+    }
+}
+function img_click_to_copy(e){
+	let img = e.target
+	let canvas = document.createElement("canvas")
+	let ctx = canvas.getContext("2d")
+	canvas.width = img.naturalWidth;
+	canvas.height = img.naturalHeight;
+	ctx.drawImage(img, 0, 0);
+	canvas.toBlob(function (blob) { 
+		if (navigator.clipboard) {
+			navigator.clipboard.write([new ClipboardItem({ [blob.type]: blob })])
+			cp_alert.style.opacity = 1;
+			setTimeout(function(){cp_alert.style.opacity = 0;}, 1000);
+		}
+	}, 'image/png');
+}
+function z() {
+    var a = document.createElement("div");
+    return ("draggable" in a || "ondragstart" in a && "ondrop" in a) && "FormData" in window && "FileReader" in window
+}
+var forms = document.querySelectorAll(".box");
+Array.prototype.forEach.call(forms, function(a) {
+    var c = a.querySelector(".box_file");
+    c.addEventListener("change", function(a) {
+        transform_file(a.target.files)
+    });
+    z && (a.classList.add("has-advanced-upload"), "drag dragstart dragend dragover dragenter dragleave drop".split(" ").forEach(function(b) {
+        a.addEventListener(b, function(a) {
+            a.preventDefault();
+            a.stopPropagation()
+        })
+    }), ["dragover", "dragenter"].forEach(function(b) {
+        a.addEventListener(b, function() {
+            a.classList.add("is-dragover")
+        })
+    }), ["dragleave", "dragend", "drop"].forEach(function(b) {
+        a.addEventListener(b, function() {
+            a.classList.remove("is-dragover")
+        })
+    }), a.addEventListener("drop", function(a) {
+        transform_file(a.dataTransfer.files)
+    }), a.addEventListener("click", function() {
+        c.click()
+    }))
+});
+      </script>
+   </body>
+</html>

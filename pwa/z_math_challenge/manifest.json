@@ -1,0 +1,15 @@
+{
+    "name": "Z Math Challenge",
+    "short_name": "z_math_challenge",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "icons": [
+        {
+            "src": "favicon.ico",
+            "sizes": "256x256",
+            "type": "image/png"
+        }
+    ]
+}

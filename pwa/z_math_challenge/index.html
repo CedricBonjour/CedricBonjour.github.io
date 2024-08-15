@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z Math Challenge</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="favicon.ico">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+        body {
+            font-family:  monospace;
+            text-align: center;
+            /* margin-top: 50px; */
+            background-color: #333;
+            color: #eee;
+        }
+        h1{ color: #555}
+        table {
+            /* width: auto; */
+            display: inline-block;
+
+            border-collapse: collapse;
+            /* margin: 20px auto; */
+        }
+        th, td {
+            border: 1px solid #555;
+            width: 10em;
+            padding: .5em;
+            color:#555;
+            /* text-align: center; */
+        }
+        #calc {font-size:  3em; line-height: 3em; font-weight: bold;}
+        input{text-align: center; padding: .5em; border: none; border-radius: 1em;outline: none;}
+        
+    </style>
+</head>
+
+<body>
+    <h1>Z Math Challenge</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Score</th>
+                <th>Max Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="score">0</td>
+                <td id="max_score">0</td>
+            </tr>
+        </tbody>
+    </table>
+    <section id="calc"> 1+1</section>
+    <input type="number" id="integerInput" name="integerInput" step="1">
+
+    <script>
+        // Register the service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(function (registration) {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                }).catch(function (error) {
+                    console.log('Service Worker registration failed:', error);
+                });
+        }
+
+
+        
+        const operation_list = ['+', '-', '*', '/'];
+        
+        
+        function get_expected_result(a, operation, b) {
+            switch (operation) {
+                case '+': return  a + b;
+                case '-': return  a - b;
+                case '*': return  a * b;
+                case '/': return  a / b;
+            }
+        }
+        
+        
+        let MAX_RESULT = 10;
+        let ca = 1; //current value
+        let co = '+'; //current value
+        let cb = 1; //current value
+        let score = 0; 
+        let max_score = 0;
+        let score_increment = 40;
+
+        document.getElementById("calc").innerHTML = ca +" "+ co + " " + cb;
+
+        function handleSuccess(){
+            score += score_increment + Math.floor(0.05* score);
+            if (score > max_score) max_score = score;
+
+            document.getElementById("score").innerHTML = score;
+            document.getElementById("max_score").innerHTML =max_score;
+
+            MAX_RESULT = Math.max( score,10)
+
+            ca = get_expected_result(ca, co, cb);
+            co = new_operation(ca) ;
+            cb = new_number(ca, co);
+
+            document.getElementById("calc").innerHTML = ca +" "+ co + " " + cb;
+            document.getElementById("integerInput").value = '';
+
+            console.log(ca +" "+ co + " " + cb);
+        }
+
+
+        function handleInputChange(event) {
+            const inputValue = event.target.value;
+            console.log("Input value changed to:", inputValue);
+            if ( inputValue == get_expected_result(ca, co, cb) )   handleSuccess();
+        }
+
+        document.getElementById("integerInput").addEventListener("input", handleInputChange);
+
+
+
+
+
+        function get_div_list(n) {
+            const div_list = [];
+            for (let i = 2; i < n/2; i++)
+                if (n % i === 0) div_list.push(i);
+            return div_list;
+        }
+
+        function get_max_mult(n){
+            let i=2;
+            while (i*n < MAX_RESULT) i++;
+            return i; 
+        }
+
+
+        function SlctRand(arr) {
+            const randomIndex = Math.floor(Math.random() * arr.length);
+            return arr[randomIndex];
+        }
+
+        function new_number(a, op){
+            switch (op) {
+                case '+': return  Math.max(1,Math.floor(Math.random() *  (MAX_RESULT-a) ));
+                case '-': return  Math.max(1, Math.floor(Math.random() *  a ));
+                case '*': return  Math.max(2, Math.floor(Math.random() *  get_max_mult(a) ));
+                case '/': return  SlctRand(get_div_list(a));
+            }
+        }
+
+        function isPrime(num) {
+            if (num <= 1) return false;
+            if (num <= 3) return true;
+
+            if (num % 2 === 0 || num % 3 === 0) return false;
+
+            for (let i = 5; i * i <= num; i += 6) {
+                if (num % i === 0 || num % (i + 2) === 0) return false;
+            }
+            return true;
+        }
+
+        function isValidOperation(n, op) {
+            if (( n<10 || isPrime(n)) && op == '/') return false;
+            if (n < 10 && op == '-') return false;
+            if (n > MAX_RESULT/2 && op == '*') return false;
+            if (n > MAX_RESULT - 10 && op == '+') return false;
+            return true;
+        }
+
+
+        function new_operation(a) {
+            let op = SlctRand(operation_list);
+            while (!isValidOperation(a, op)) op = SlctRand(operation_list);
+            return op;
+        }
+
+       
+
+        document.getElementById("integerInput").focus()
+
+        setInterval( ()=>{if (score > 0) score --; document.getElementById("score").innerHTML = score;}, 200);
+
+    </script>
+</body>
+
+</html>
+
