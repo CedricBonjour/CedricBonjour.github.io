@@ -15,6 +15,8 @@
             background-color: #333;
             color: #eee;
             margin: 0;
+            font-weight: bold;
+
         }
 
         #wrapper {
@@ -31,135 +33,193 @@
             border-collapse: collapse;
         }
 
-        th,
-        td {
-            border: none;
-            width: 1em;
-        }
-
-        #kb {
-            border-spacing: .5em;
-            border-collapse: separate;
-            height: 50vh;
-        }
-
-        #kb td {
-            font-size: 2em;
-            color: #999;
-            font-weight: bold;
-            border-radius: 1em;
-            box-shadow: inset 0 0 3px 1px #444;
-        }
-
-        #kb td:hover {
-
-            box-shadow: inset 0 0 5px 2px #444;
-        }
-
-
-        .txt {
+        #tb {
+            height: 40vh;
             font-size: 3em;
             line-height: 2em;
-            font-weight: bold;
             min-height: 2em;
         }
 
-        #score_wrapper{
-            color: #555;
-
+        #th {
+            color: #777;
             height: 10vh;
             font-size: 1.3em;
+            line-height: 2em;
         }
-        #core{
-            height: 40vh;
-            display: flex;
 
+        #tf {
+            border-spacing: .5em;
+            border-collapse: separate;
+            height: 50vh;
+            font-size: 2em;
+            color: #999;
         }
-        #calc{
-            vertical-align:bottom;
+
+
+        td {
+            border: none;
+            width: 1em;
+            border-radius: 1em;
+        }
+
+        #tf td {
+            box-shadow: inset 0 0 3px 1px #444;
+            cursor: pointer;
+        }
+
+        #tf td:hover {
+            box-shadow: inset 0 0 5px 2px #444;
+        }
+
+        #calc {
+            vertical-align: bottom;
+        }
+
+        .mode {
+            display: flex;
+            width: 100%;
+            justify-content: space-around;
+        }
+
+        .op {
+            display: inline-block;
+            font-size: .6em;
+            width: 2em;
+            height: 2em;
+            line-height: 2em;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .op[bop="1"] {
+            box-shadow: inset 0 0 3px 1px #555;
+
         }
     </style>
 </head>
 
 <body>
     <div id="wrapper">
-        <section id="score_wrapper">
-            <br>
+        <br>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Score</th>
-                        <th>Max Score</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td id="score">0</td>
-                        <td id="max_score">0</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-        <section id="core">
-            <table>
-                <tbody>
-                    <tr>
-                        <td id="calc" class="txt">1+1</td>
-                    </tr>
-                    <tr>
-                        <td id="input" class="txt">?</td>
-                    </tr>
-                </tbody>
-            </table>
-            <br> <br>
-            <!-- <div id="calc" class="txt">1+1</div>
-            <div id="input" class="txt">?</div> -->
+        <table id="th">
+            <tbody>
 
-        </section>
-        <section>
+                <tr>
+                    <td>Score</td>
+                    <td><span class="op" value="+" bop="1">+</span></td>
+                    <td><span class="op" value="*" bop="1">&times;</span></td>
+                    <td>Max Score</td>
+                </tr>
+                <tr>
+                    <td id="score">0</td>
+                    <td><span class="op" value="-" bop="1">-</span></td>
+                    <td><span class="op" value="/" bop="1">/</span></td>
+                    <td id="max_score">0</td>
+                </tr>
 
-            <table id="kb">
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>5</td>
-                        <td>6</td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>8</td>
-                        <td>9</td>
-                    </tr>
-                    <tr>
-                        <td>&lt;</td>
-                        <td>0</td>
-                        <td>C</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+            </tbody>
+        </table>
+        <table id="tb">
+            <tbody>
+                <tr>
+                    <td id="calc" class="txt">1+1</td>
+                </tr>
+                <tr>
+                    <td id="input" class="txt">?</td>
+                </tr>
+            </tbody>
+        </table>
+        <br> <br>
+
+        <table id="tf">
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                </tr>
+                <tr>
+                    <td>&lt;</td>
+                    <td>0</td>
+                    <td>C</td>
+                </tr>
+            </tbody>
+        </table>
         <br><br>
     </div>
 
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/service-worker.js')
-                .then(function (registration) {
-                    console.log('Service Worker registered with scope:', registration.scope);
-                }).catch(function (error) {
-                    console.log('Service Worker registration failed:', error);
-                });
+                .then(function (registration) { console.log('Service Worker registered with scope:', registration.scope); })
+                .catch(function (error) { console.log('Service Worker registration failed:', error); });
+        }
+
+        let operation_list = ['+', '-', '*', '/'];
+        let MAX_RESULT = 0;
+        let co = operation_list[0]; //current value
+        let ca = 1; //current value
+        let cb = 1; //current value
+        let score = 0;
+        let max_score = 0;
+        const score_increment = 15;
+        const score_ratio_increment = 0.1;
+        const score_min = 10;
+        const score_decrement_periode_in_ms = 200;
+
+
+
+
+        function new_calc() {
+            MAX_RESULT = score;
+            co = SlctRand(operation_list);
+            ca = newA(co);
+            cb = newB(co, ca)
+            let calc = ca + " " + co + " " + cb;
+            document.getElementById("calc").innerHTML = calc;
+            document.getElementById("input").innerHTML = '?';
+
+            console.log(MAX_RESULT + ' >> ' + calc + ' = ', get_expected_result(ca, co, cb));
         }
 
 
 
-        const operation_list = ['+', '-', '*', '/'];
+        function get_dividend() {
+            let n = Math.max(4, Math.floor(Math.random() * MAX_RESULT));
+            while (isPrime(n)) n = Math.max(4, Math.floor(Math.random() * MAX_RESULT));
+            return n;
+
+        }
+
+        function newA(op) {
+            switch (op) {
+                case '+': return Math.max(1, Math.floor(Math.random() * MAX_RESULT));
+                case '-': return Math.max(2, Math.floor(Math.random() * MAX_RESULT));
+                case '*': return Math.max(2, Math.floor(Math.random() * 12 ));
+                case '/': return get_dividend();
+            }
+
+        }
+        function newB(op, a) {
+            switch (op) {
+                case '+': return Math.max(1, Math.floor(Math.random() * (MAX_RESULT - a)));
+                case '-': return Math.max(1, Math.floor(Math.random() * a));
+                case '*': return Math.max(2, Math.floor(Math.random() * get_max_mult(a) ));
+                case '/': return SlctRand(get_div_list(a));
+            }
+
+        }
 
 
         function get_expected_result(a, operation, b) {
@@ -171,34 +231,12 @@
             }
         }
 
-
-        let MAX_RESULT = 10;
-        let ca = 1; //current value
-        let co = '+'; //current value
-        let cb = 1; //current value
-        let score = 0;
-        let max_score = 0;
-        let score_increment = 40;
-
-        document.getElementById("calc").innerHTML = ca + " " + co + " " + cb;
-
         function handleSuccess() {
-            score += score_increment + Math.floor(0.05 * score);
+            score += score_increment + Math.floor(score_ratio_increment * score);
             if (score > max_score) max_score = score;
-
             document.getElementById("score").innerHTML = score;
             document.getElementById("max_score").innerHTML = max_score;
-
-            MAX_RESULT = Math.max(score, 10)
-
-            ca = get_expected_result(ca, co, cb);
-            co = new_operation(ca);
-            cb = new_number(ca, co);
-
-            document.getElementById("calc").innerHTML = ca + " " + co + " " + cb;
-            document.getElementById("input").innerHTML = '?';
-
-            console.log(ca + " " + co + " " + cb);
+            new_calc();
         }
 
 
@@ -213,15 +251,9 @@
         }
 
 
-
-
-
-
-
         function get_div_list(n) {
             const div_list = [];
-            for (let i = 2; i < n / 2; i++)
-                if (n % i === 0) div_list.push(i);
+            for (let i = 2; i <= n / 2; i++) if (n % i === 0) div_list.push(i);
             return div_list;
         }
 
@@ -233,68 +265,60 @@
 
 
         function SlctRand(arr) {
-            const randomIndex = Math.floor(Math.random() * arr.length);
-            return arr[randomIndex];
+            return arr[Math.floor(Math.random() * arr.length)];
         }
 
-        function new_number(a, op) {
-            switch (op) {
-                case '+': return Math.max(1, Math.floor(Math.random() * (MAX_RESULT - a)));
-                case '-': return Math.max(1, Math.floor(Math.random() * a));
-                case '*': return Math.max(2, Math.floor(Math.random() * get_max_mult(a)));
-                case '/': return SlctRand(get_div_list(a));
-            }
-        }
+      
 
         function isPrime(num) {
             if (num <= 1) return false;
             if (num <= 3) return true;
-
             if (num % 2 === 0 || num % 3 === 0) return false;
-
-            for (let i = 5; i * i <= num; i += 6) {
+            for (let i = 5; i * i <= num; i += 6)
                 if (num % i === 0 || num % (i + 2) === 0) return false;
-            }
             return true;
         }
 
-        function isValidOperation(n, op) {
-            if ((n < 10 || isPrime(n)) && op == '/') return false;
-            if (n < 10 && op == '-') return false;
-            if (n > MAX_RESULT / 2 && op == '*') return false;
-            if (n > MAX_RESULT - 10 && op == '+') return false;
-            return true;
+        function resetChallenge() {
+
+            operation_list = [];
+            MAX_RESULT = 0;
+            score = 0;
+            max_score = 0;
+            Array.from(document.getElementsByClassName('op')).forEach(op => {
+                if (op.getAttribute('bop') === '1') 
+                    operation_list.push(op.getAttribute('value'))
+                
+            });
+            new_calc();
+
+
         }
-
-
-        function new_operation(a) {
-            let op = SlctRand(operation_list);
-            while (!isValidOperation(a, op)) op = SlctRand(operation_list);
-            return op;
-        }
-
-
-
-
-        setInterval(() => { if (score > 0) score--; document.getElementById("score").innerHTML = score; }, 200);
-
 
 
         document.addEventListener('keydown', function (event) {
             if (event.key >= '0' && event.key <= '9') handleInputChange(event.key);
             else if (event.key === 'Backspace' && event.ctrlKey) handleInputChange('C');
             else if (event.key === 'Backspace') handleInputChange('<');
+            else if (event.key === 'Enter' && event.ctrlKey) handleSuccess();
+
         });
 
-
-
-
-        Array.from(document.getElementById('kb').getElementsByTagName('td')).forEach(td => {
+        Array.from(document.getElementById('tf').getElementsByTagName('td')).forEach(td => {
             td.addEventListener('click', event => { handleInputChange(event.target.innerText); });
         });
 
+        Array.from(document.getElementsByClassName('op')).forEach(op => {
+            op.addEventListener('click', event => {
+                const newBop = event.target.getAttribute('bop') === '0' ? '1' : '0';
+                event.target.setAttribute('bop', newBop);
+                resetChallenge();
+            });
+        });
 
-
+        setInterval(() => { if (score > 0) score--; document.getElementById("score").innerHTML = score; }, score_decrement_periode_in_ms);
+        console.log("time earned per success = ", score_increment * score_decrement_periode_in_ms / 1000, "sc");
+        new_calc();
     </script>
 </body>
 
