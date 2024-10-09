@@ -76,12 +76,13 @@ miscSections.forEach(section => {
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 
-function httpGetAsync(theUrl, callback)
+function httpGetAsync(theUrl, callback, errHandler= null)
 {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() { 
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             callback(xmlHttp.responseText);
+		else if (xmlHttp.readyState == 4 && errHandler !==null) errHandler()
     }
     xmlHttp.open("GET", theUrl, true); // true for asynchronous 
     xmlHttp.send(null);
@@ -89,6 +90,9 @@ function httpGetAsync(theUrl, callback)
 
 
 function chessHandle(resp){
+
+
+
 	resp= JSON.parse(resp).chess_rapid
 	console.log(resp)
 	var chess_section = document.getElementById("sub_chess")
@@ -155,5 +159,14 @@ function chessHandle(resp){
 
 }
 
+function chessErr(){
 
-httpGetAsync("https://api.chess.com/pub/player/cerber666/stats", chessHandle)
+	var chess_section = document.getElementById("sub_chess");
+	var err_div = document.createElement("code");
+	err_div.innerText = ">> Could not reach the chess.com API"
+	chess_section.append (err_div)
+
+}
+
+
+httpGetAsync("https://api.chess.com/pub/player/cerber666/stats", chessHandle, chessErr)
