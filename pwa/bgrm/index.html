@@ -3,12 +3,18 @@
    <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>white2alpha </title>
+      <title>X - Background </title>
       <style>
+		body{
+			font-family: sans-serif;
+			font-size: 13px;
+			text-align: center; 
+			margin:0
+		}
 			img{
 			cursor:pointer;
 			margin: 1em;
-			max-width: 10em;
+			max-width: 30em;
 			background-image:  repeating-linear-gradient(45deg, #bbb 25%, transparent 25%, transparent 75%, #bbb 75%, #bbb), repeating-linear-gradient(45deg, #bbb 25%, #e5e5f7 25%, #e5e5f7 75%, #bbb 75%, #bbb);
 			background-position: 0 0, 5px 5px;
 			background-size: 10px 10px;
@@ -16,6 +22,11 @@
 			input[type='file'] {
 			pointer-events: none;
 			display: none;
+			}
+			input[type='range'] {
+			display: inline-block;
+			width :30em; 
+			margin : 3em 0;
 			}
 			#cp_alert{
 			position: fixed;
@@ -33,7 +44,7 @@
 			}
 			.box{
 			display: inline-block;
-			width: 80%;
+			width: 30em;
 			background-color: #eee;
 			cursor: pointer;
 			border-radius: 2em;
@@ -42,19 +53,26 @@
 
 	</style>
    </head>
-   <body style="text-align: center; font-family:arial; margin:0">
+   <body>
       <div class="container">
-         <h1>Img white-2-alpha</h1>
+		
+		 <input type="range" name="threshold_slct" id="threshold_slider" min="0"  max="254" step="1" value = 10> 
+		 <br>
          <form class="box" >
             <div class="box_input">
 			<input type="file" name="files[]" class="box_file" multiple />
-			<br><br><br><br>
-			 To choose file(s)<br><br><b> [ jpg | png | svg] </b><br><br>click here <br> or <br> drag file here <br> or <br> ctrl+V to paste 
-			<br><br><br><br>
+			<br><br>
+			Paste, Click or Drag here to select an image 
+			<br> <br> 
+			[ jpg | png | svg] 
+			<br><br>
+			Once loaded click on image to copy to clipboard
+			<br>
+			<br>
             </div>
          </form>
       </div>
-      <br>	Once loaded click on image to copy to clipboard
+      <br>	
       <div id="imgs"></div>
       <br><br><br><br>
       <div id="cp_alert">
@@ -68,13 +86,15 @@ function add_img_as_data_url(durl){
 	let canvas = document.createElement("canvas")
 	let ctx = canvas.getContext("2d")
 	let img = new Image;
+	let t = document.getElementById("threshold_slider").value;
 	img.onload = function() {
 		canvas.width = img.width;
 		canvas.height = img.height;
 		ctx.drawImage(img, 0, 0);
 		imgd = ctx.getImageData(0, 0, canvas.width, canvas.height)
 		x = imgd.data
-		for (var i=0,n=x.length;i<n;i+=4) if(x[i]>200 && x[i+1]>200 && x[i+2]>200) x[i+3]=0
+		
+		for (var i=0,n=x.length;i<n;i+=4) if(x[i]>t && x[i+1]>t && x[i+2]>t) x[i+3]=0
 		ctx.putImageData(imgd, 0, 0);
 		var img_out = document.createElement("img")
 		img_out.src = canvas.toDataURL()
@@ -96,6 +116,10 @@ window.addEventListener('paste', function(e){
 		  add_img_as_data_url(src)
 	}
 });
+
+
+
+
 function transform_file(a) {
     if (FileReader && a && a.length) {
         for (var b = 0; b < a.length; b++)(function(a) {

@@ -37,13 +37,14 @@ header{
 h1,h2,h3,h4, h5{font-weight: inherit; margin:0; font-size: inherit;}
 h1{font-size: 2em}
 h3{
+  color: #666;
   margin: 4em 0 1em 0;
   background-color: #ddd;
   border-radius: 1em;
   padding: .5em;
 }
 h4{margin: 1.5em;}
-h5{margin: 1em 0 0 0}
+h5{margin: .5em;}
 
 
 section div , header div{
@@ -150,7 +151,7 @@ date:nth-of-type(2){
 
 #contactCard img{
   height: 2em;
-  margin: 1em 3em 1em 3em;
+  margin: 1em ;
 }
 
 
