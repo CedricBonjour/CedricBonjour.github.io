@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg height="500"  width="500" xmlns="http://www.w3.org/2000/svg">
-   <ellipse style="fill:#3e73b4" cx="250" cy="250" rx="200" ry="200" />
+<svg height="500" width="500" xmlns="http://www.w3.org/2000/svg">
+   <ellipse style="fill:#3e73b4" cx="250" cy="250" id="ellipse1" ry="250" rx="250" />
    <g fill="none" stroke="#fff" stroke-width="50" stroke-linecap="round" stroke-linejoin="round">
-   <path d="M 338.38835,338.38835 A 125,125 0 0 1 202.16457,365.48494 125,125 0 0 1 125,250 125,125 0 0 1 202.16457,134.51506 125,125 0 0 1 338.38835,161.61165" />
-   <path d="m 375,250 0,0" />
-   <path d="m 235,200 50,50 -50,50"/>
+      <path d="m 410,250 0,0" />
+      <path d="M 372.56711,352.84602 A 160,160 0 0 1 195.27678,400.35082 160,160 0 0 1 90,250 160,160 0 0 1 195.27678,99.649181 160,160 0 0 1 372.56711,147.15398" />
+      <path d="m 235,195 60,60 -60,60" />
    </g>
 </svg>
